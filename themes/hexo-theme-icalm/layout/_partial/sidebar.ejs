@@ -10,7 +10,7 @@
         <% } %>
         <ul>
           <% for (const m in theme.menu) { %>
-            <a href="<%= theme.menu[m] %>" class="Btn">
+            <a href="<%= url_for(theme.menu[m]) %>" class="Btn">
               <li><%= m %></li>
             </a>  
           <% } %>
