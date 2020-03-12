@@ -8,13 +8,19 @@
         <div data-pager-shell>
             <%- body %>
             <%- partial('_partial/footer') %>
+            <script>
+                if (hinst) {
+                    Han(document.querySelector('.data-pager-shell')).render();
+                }
+            </script>
         </div>
     </div>
 </div>
 <%- js('js/pager/dist/singlepager.js') %>
+<%- js('//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js') %>
 <script>
-var sp = new Pager('data-pager-shell')
+    var sp = new Pager('data-pager-shell');
+    var hinst = Han.init();
 </script>
-<%- /* 汉字标准格式 */ js('//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js') %>
 </body>
 </html>
