@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html lang="zh-cmn-Hans" class="han-init">
 <%- partial('_partial/head') %>
 <body>
 <div class="Shell">
@@ -14,7 +14,7 @@
 <%- js('js/pager/dist/singlepager.js') %>
 <script>
 var sp = new Pager('data-pager-shell')
-
 </script>
+<%- /* 汉字标准格式 */ js('//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js') %>
 </body>
 </html>
