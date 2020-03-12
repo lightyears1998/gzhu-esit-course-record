@@ -19,14 +19,15 @@
     </section>
     <% if (!isPage) { %>
       <section class='ArticleMeta'>
-          <div>
+          <div class='ArticleReleaseDate'>
             发布于&nbsp;
             <time datetime="<%= date_xml(post.date) %>" itemprop="datePublished">
               <%= date(post.date, config.date_format) %>
             </time>
           </div>
           <% if (post.tags && post.tags.length){ %>
-            <div>
+            <div class="ArticleMetaSeparator">/</div>
+            <div class="ArticleTags">
               tags: <%- partial('tag-list', { className: 'meta-text', tags: post.tags }) %>
             </div>
           <% } %>
@@ -49,8 +50,8 @@
             })();
           } else {
             DISQUS.reset({
-                reload: true,
-                config: window.disqus_config
+              reload: true,
+              config: window.disqus_config
             })
           }
         </script>
