@@ -15,9 +15,12 @@ tags: [env, gcc, compile]
 $ uname -r
 3.10.0-1062.12.1.el7.x86_64
 
-# 建议使用较新版本的GCC。
 $ gcc --version
 gcc (GCC) 8.3.1 20190311 (Red Hat 8.3.1-3)
+
+$ cat /proc/cpuinfo
+model name      : Intel(R) Xeon(R) CPU E5-2682 v4 @ 2.50GHz
+cpu cores       : 1
 ```
 
 ## 取得GCC的源代码
@@ -56,7 +59,7 @@ gcc-9.2.0 gcc-9.2.0.tar.gz
 $ mkdir gcc-9.2.0-build
 gcc-9.2.0  gcc-9.2.0-build  gcc-9.2.0.tar.gz
 
-# 运行配置脚本
+# 运行配置脚本。
 $ cd gcc-9.2.0-build
 $ ../gcc-9.2.0/configure
 configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.
@@ -98,9 +101,68 @@ make -j 2 # 然后等待。
 # 可随时断开SSH连接。
 ```
 
+中途可以重新连接上主机看一下编译过程是否出现差错。
+
 ```sh
 # 当重新通过SSH连接到主机时，使用screen恢复之前的会话。
 screen -r compile-gcc
+
+# 顺便一提，在Screen会话中时，按下`Ctrl + A, d`组合键可以从当前会话中分离。
+# （在Screen会话中时，）按下`Ctrl + A, k`可以Kill掉当前会话。
+# （在Screen会话中时，）按下`Ctrl + A, ?`可以显示所有可用的命令。
 ```
 
-todo
+在我的主机上，编译过程持续了7个小时。
+
+编译完成后就可以准备安装了。本来还应该进行测试步骤，但因为测试耗费时间太长，跳过这一步吧。
+
+为避免覆盖系统的GCC，`make install`时指定一个目录进行安装。
+
+```sh
+$ screen -r compile-gcc
+$ cd ~/esit-workspace/task0.1/ && ls
+gcc-9.2.0  gcc-9.2.0-build gcc-9.2.0.tar.gz
+
+# 创建一个目录，下一步`make install`的GCC就装在这个新建的目录里。
+$ mkdir gcc-9.2.0-target && ls
+gcc-9.2.0  gcc-9.2.0-build  gcc-9.2.0-target  gcc-9.2.0.tar.gz
+
+$ cd gcc-9.2.0-build
+$ make DESTDIR=/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target install
+```
+
+`make install`结束后用热乎着的编译器编译一个新的Hello, world看看。
+
+```sh
+$ cd ../gcc-9.2.0-target && pwd
+/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target
+
+$ ./usr/local/bin/gcc --version
+gcc (GCC) 9.2.0
+
+$ nano hello-world.c  # 写一个Hello, world。
+
+$ ./usr/local/bin/gcc -v hello-world.c -o hello-world > compile.log 2>&1
+
+# 查看一下编译日志。
+$ grep -z "/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target/" compile.log
+
+$ ./hello-world
+Hello, world!
+```
+
+好，大功告成。
+
+---
+
+编译产生的中间产物很多，安装完成后就不需要这些文件了。若是磁盘空间紧俏，可以直接删除。
+
+```sh
+$ du ~/esit-workspace/task0.1/* -sh
+804M    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0
+6.1G    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0-build
+1.5G    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target
+119M    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0.tar.gz
+
+rm -rf ~/esit-workspace/task0.1/gcc-9.2.0-build
+```
