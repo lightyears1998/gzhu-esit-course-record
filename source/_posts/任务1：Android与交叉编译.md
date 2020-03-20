@@ -6,7 +6,7 @@ tags: [android, ndk, compile]
 
 金老师这周给我们布置的任务是：“交叉编译一个共享库（Shared Object），在安卓手机中加载它，显示一个Hello, world。”
 
-要实现这一个目标有很多种途径，最简单的应该算是使用Android Studio中集成好的NDK。Anroid开发基本上离不开Android Studio。
+要实现这一个目标有很多种途径，最简单的应该算是使用Android Studio中集成好的NDK。Android开发基本上离不开Android Studio。
 
 NDK是额外组件，需要通过Android Studio中的SDK Manager进行安装。安装时还可以勾选构建工具CMake和调试用的LLDB。
 
