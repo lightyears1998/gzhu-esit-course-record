@@ -47,10 +47,9 @@ dependencies {
 
 这里也可以再多做一层封装：
 
-在Project视图下的`app/cpp`里新建一个C/C++ Source File及其头文件。
+在Project视图下的`app/cpp`里新建先定义C++头文件`hello.h`。
 
 ``` cpp
-/** hello.h */
 #ifndef HI_NDK_HELLO_H
 #define HI_NDK_HELLO_H
 
@@ -66,9 +65,9 @@ string sayHi();
 #endif //HI_NDK_HELLO_H
 ```
 
-``` cpp
-/** hello.cpp */
+编写对应的C++实现文件`hello.cpp`。
 
+``` cpp
 #include "hello.h"
 #include <android/log.h>
 using namespace std;
@@ -86,7 +85,7 @@ string sayHi() {
 }
 ```
 
-并将上述`.cpp`文件也加入`CMakeLists.txt`的`add_library`处理器中，跟模板生成的`native-lib.cpp`放在一起。
+并将上述`.cpp`文件加入`CMakeLists.txt`的`add_library`处理器中，跟模板生成的`native-lib.cpp`放在一起。
 
 ``` makefile
 # CMakeLists.txt
