@@ -118,6 +118,6 @@ Java_net_qfstudio_hindk_MainActivity_getGreeting(JNIEnv *env, jobject thiz) {
 
 执行Gradle Build并连接手机或模拟器运行，即可在Logcat和MainActivity屏幕中看到预期的输出。
 
-![运行屏幕截图](/assets/images/task1/screenshot.jpg)
+![运行屏幕截图](../images/task1/screenshot.jpg)
 
 完整代码可见于[Gitee](https://gitee.com/lightyears/HiNDK/tree/master)。
