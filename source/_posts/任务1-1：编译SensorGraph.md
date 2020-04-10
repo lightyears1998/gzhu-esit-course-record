@@ -8,4 +8,4 @@ tags: [android, ndk, compile, example]
 
 从Github上`clone`源代码，将SensorGraph项目导入Android Studio，Gradle Sync & Build即可。
 
-<img src="/images/task2/screenshot.jpg" style="max-width: 270px;" alt="运行屏幕截图" />
+<img src="/images/task1-1/screenshot.jpg" style="max-width: 270px;" alt="运行屏幕截图" />
