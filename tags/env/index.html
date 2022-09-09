@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="han-init">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>广州大学ESiT课程记录</title>
+  
+    <link rel="icon" href="/gzhu-esit-course-record/assets/favicon.png">
+  
+  
+  
+  
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/gzhu-esit-course-record/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(/gzhu-esit-course-record/assets/header.png)">
+        <div class='av-pic' style="background-image: url(/gzhu-esit-course-record/assets/avatar.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>广州大学ESiT课程记录</div>
+        
+            <div>Embedded System and Interface Technology</div>
+        
+        <ul>
+          
+            <a href="/gzhu-esit-course-record/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/gzhu-esit-course-record/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/lightyears1998/gzhu-esit-course-record" target="_blank" rel="noopener">
+                    <img src="/gzhu-esit-course-record/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <ul class="Index">
+  
+    <header class='PageTitle'>
+        <h1>{ env }</h1>
+    </header>
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/gzhu-esit-course-record/2020/03/12/%E4%BB%BB%E5%8A%A10-1%EF%BC%9A%E7%BC%96%E8%AF%91GCC/">任务0.1：编译GCC</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-03-12T12:16:20.000Z" itemprop="datePublished">
+    2020-03-12
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/env/">env</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/gcc/">gcc</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/compile/">compile</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>金老师给我们的附加任务是从源代码编译一套GCC。</p>
+<p>在<a href="https://gcc.gnu.org/install/index.html" target="_blank" rel="noopener">GNU网站</a>上有完整的关于如何从源代码编译GCC的指导。GNU网站上将编译和安装GCC的过程划分为6个步骤，我们只需要完成前4个步骤（即到Build这一步）就算是完成任务了。</p>
+<p>我打算在云主机中编译GCC。总的来说，这不算是一件难事。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在编译前确认系统信息。</span></span><br><span class="line">$ uname -r</span><br><span class="line">3.10.0-1062.12.1.el7.x86_64</span><br><span class="line"></span><br><span class="line">$ gcc --version</span><br><span class="line">gcc (GCC) 8.3.1 20190311 (Red Hat 8.3.1-3)</span><br><span class="line"></span><br><span class="line">$ cat /proc/cpuinfo</span><br><span class="line">model name      : Intel(R) Xeon(R) CPU E5-2682 v4 @ 2.50GHz</span><br><span class="line">cpu cores       : 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="取得GCC的源代码"><a href="#取得GCC的源代码" class="headerlink" title="取得GCC的源代码"></a>取得GCC的源代码</h2><p>这一部分对应指南中的<a href="https://gcc.gnu.org/install/download.html" target="_blank" rel="noopener">第2步</a>。</p>
+<p>我跳过了指南中的<a href="https://gcc.gnu.org/install/prerequisites.html" target="_blank" rel="noopener">第1步</a>，因为第1步描述的是编译GCC所需要安装的软件。这些软件如果缺失的话，可以在“配置”这一步骤中检测出来。</p>
+<p>GCC的源代码可以从GNU的<a href="https://gcc.gnu.org/git.html" target="_blank" rel="noopener">官方Git仓库</a>中克隆下来，或者从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="noopener">镜像网站</a>下载。这里我选择的是速度较快的日本镜像站<a href="http://ftp.tsukuba.wide.ad.jp/software/gcc/" target="_blank" rel="noopener">ftp.tsukuba.wide.ad.jp</a>，下载的版本是9.2.0。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir -p esit-workspace/task0.1</span><br><span class="line"><span class="built_in">cd</span> esit-workspace/task0.1</span><br><span class="line"></span><br><span class="line">wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-9.2.0/gcc-9.2.0.tar.gz</span><br><span class="line"><span class="comment"># 下载时如果速度太慢或失败，可以现在网络条件好的地方下载好，然后使用`scp`上传至服务器。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从压缩包中解压源代码。</span></span><br><span class="line">tar -xf gcc-9.2.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>这样，GCC的源代码就准备好了。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>这一部分对应指南中的<a href="https://gcc.gnu.org/install/configure.html" target="_blank" rel="noopener">第3步</a>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/home/lightyears/esit-workspace/task0.1</span><br><span class="line">$ ls</span><br><span class="line">gcc-9.2.0 gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据指南的要求，新建一个目录用来装编译产物。</span></span><br><span class="line">$ mkdir gcc-9.2.0-build</span><br><span class="line">gcc-9.2.0  gcc-9.2.0-build  gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行配置脚本。</span></span><br><span class="line">$ <span class="built_in">cd</span> gcc-9.2.0-build</span><br><span class="line">$ ../gcc-9.2.0/configure</span><br><span class="line">configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.</span><br><span class="line">Try the --with-gmp, --with-mpfr and/or --with-mpc options to specify</span><br><span class="line">their locations.  Source code <span class="keyword">for</span> these libraries can be found at</span><br><span class="line">their respective hosting sites as well as at</span><br><span class="line">ftp://gcc.gnu.org/pub/gcc/infrastructure/.  See also</span><br><span class="line">http://gcc.gnu.org/install/prerequisites.html <span class="keyword">for</span> additional info.  If</span><br><span class="line">you obtained GMP, MPFR and/or MPC from a vendor distribution package,</span><br><span class="line">make sure that you have installed both the libraries and the header</span><br><span class="line">files.  They may be located <span class="keyword">in</span> separate packages.</span><br></pre></td></tr></table></figure>
+
+<p><code>configure</code>在运行的过程中报错，看上去应该是必须的一些软件没有安装。依次执行<code>yum search/info GMP</code>、<code>yum search/info MPFR</code>和<code>yum search MPC</code>、<code>yum info libmpc</code>，发现应该是MPC包没有安装，<code>sudo yum install libmpc</code>将需要的包装好，再次执行配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ../gcc-9.2.0/configure</span><br><span class="line">configure: error: I suspect your system does not have 32-bit development libraries (libc and headers). If you have them, rerun configure with --<span class="built_in">enable</span>-multilib. If you <span class="keyword">do</span> not have them, and want to build a 64-bit-only compiler, rerun configure with --<span class="built_in">disable</span>-multilib.</span><br></pre></td></tr></table></figure>
+
+<p>由于不需要进行编译32位的程序，因此可以使用<code>--disable-multilib</code>重新配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ../gcc-9.2.0/configure</span><br><span class="line"><span class="comment"># 程序运行后退出，MakeFile已经生成好了。</span></span><br></pre></td></tr></table></figure>
+
+<p>到这里，这一步骤就顺利结束了。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>这一部分对应指南中的<a href="https://gcc.gnu.org/install/build.html" target="_blank" rel="noopener">第4步</a>。</p>
+<p>由于编译过程会持续很久，这时可以使用<code>screen</code>这样的终端管理器。这样即使断开SSH连接，编译过程也继续运行。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">screen -S compile-gcc <span class="comment"># 新建一个窗口提供给编译gcc使用。</span></span><br><span class="line">make -j 2 <span class="comment"># 然后等待。</span></span><br><span class="line"><span class="comment"># 可随时断开SSH连接。</span></span><br></pre></td></tr></table></figure>
+
+<p>中途可以重新连接上主机看一下编译过程是否出现差错。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当重新通过SSH连接到主机时，使用screen恢复之前的会话。</span></span><br><span class="line">screen -r compile-gcc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 顺便一提，在Screen会话中时，按下`Ctrl + A, d`组合键可以从当前会话中分离。</span></span><br><span class="line"><span class="comment"># （在Screen会话中时，）按下`Ctrl + A, k`可以Kill掉当前会话。</span></span><br><span class="line"><span class="comment"># （在Screen会话中时，）按下`Ctrl + A, ?`可以显示所有可用的命令。</span></span><br></pre></td></tr></table></figure>
+
+<p>在我的主机上，编译过程持续了7个小时。</p>
+<p>编译完成后就可以准备安装了。本来还应该进行测试步骤，但因为测试耗费时间太长，跳过这一步吧。</p>
+<p>为避免覆盖系统的GCC，<code>make install</code>时指定一个目录进行安装。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ screen -r compile-gcc</span><br><span class="line">$ <span class="built_in">cd</span> ~/esit-workspace/task0.1/ &amp;&amp; ls</span><br><span class="line">gcc-9.2.0  gcc-9.2.0-build gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个目录，下一步`make install`的GCC就装在这个新建的目录里。</span></span><br><span class="line">$ mkdir gcc-9.2.0-target &amp;&amp; ls</span><br><span class="line">gcc-9.2.0  gcc-9.2.0-build  gcc-9.2.0-target  gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> gcc-9.2.0-build</span><br><span class="line">$ make DESTDIR=/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target install</span><br></pre></td></tr></table></figure>
+
+<p><code>make install</code>结束后用热乎着的编译器编译一个新的Hello, world看看。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ../gcc-9.2.0-target &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target</span><br><span class="line"></span><br><span class="line">$ ./usr/<span class="built_in">local</span>/bin/gcc --version</span><br><span class="line">gcc (GCC) 9.2.0</span><br><span class="line"></span><br><span class="line">$ nano hello-world.c  <span class="comment"># 写一个Hello, world。</span></span><br><span class="line"></span><br><span class="line">$ ./usr/<span class="built_in">local</span>/bin/gcc -v hello-world.c -o hello-world &gt; compile.log 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看一下编译日志。</span></span><br><span class="line">$ grep -z <span class="string">"/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target/"</span> compile.log</span><br><span class="line"></span><br><span class="line">$ ./hello-world</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
+
+<p>好，大功告成。</p>
+<hr>
+<p>编译产生的中间产物很多，安装完成后就不需要这些文件了。若是磁盘空间紧俏，可以直接删除。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ du ~/esit-workspace/task0.1/* -sh</span><br><span class="line">804M    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0</span><br><span class="line">6.1G    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0-build</span><br><span class="line">1.5G    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target</span><br><span class="line">119M    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line">rm -rf ~/esit-workspace/task0.1/gcc-9.2.0-build</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/gzhu-esit-course-record/2020/03/10/%E4%BB%BB%E5%8A%A10%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">任务0：建立开发环境</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-03-10T00:38:26.000Z" itemprop="datePublished">
+    2020-03-10
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/env/">env</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/gcc/">gcc</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>受到新冠肺炎的影响，学校禁止学生返校，课程进行远程教学。指导本课程的金老师在周一时和我们在线上通过腾讯课堂进行了第一次课，并让我们在下周搭建好课程所需要的开发环境。</p>
+<p>课程所需的工具之一是<a href="https://gcc.gnu.org/" target="_blank" rel="noopener">GNU Compiler Collection</a>，主要会用到GCC中C语言相关功能。考虑到多数同学使用的Windows操作系统上没有GCC，金老师建议我们使用基于Linux内核的云主机，或者在Windows系统上安装虚拟机。</p>
+<p>我自己的主力操作系统是Windows 10，近几天升级到了Insider测试中的2004版本。私以为，如果只是单纯地需要GCC，除金老师的建议外，还有“在Windows上使用Linux子系统”以及“在Windows上使用MSYS2”两种简单易行的方案。不过，这两种方案很可能会有坑点。</p>
+<p>下面简要记录使用各个方案搭建环境的步骤。</p>
+<h2 id="使用基于linux内核的云主机"><a href="#使用基于linux内核的云主机" class="headerlink" title="使用基于linux内核的云主机"></a>使用基于linux内核的云主机</h2><h3 id="选购云服务器"><a href="#选购云服务器" class="headerlink" title="选购云服务器"></a>选购云服务器</h3><p><a href="https://promotion.aliyun.com/ntms/act/campus2018.html" target="_blank" rel="noopener">阿里云</a>和<a href="https://cloud.tencent.com/act/campus" target="_blank" rel="noopener">腾讯云</a>都提供基于Linux内核的云主机，并且都向学生提供优惠，基本版的云服务器月付人民币10元以下，提供一个公网IP、1Mbps的公网带宽、2GB内存以及足够大的磁盘空间。</p>
+<p>完成学生认证就可以享受学生优惠了。我自己三年前买过一次，隐约记得需要提交学生证作为认证手段。但现在最新的政策是一定年龄（阿里云24岁，腾讯云25岁）以下就自动获得学生身份，非常便捷。</p>
+<p>金老师建议我们购买的产品应该是云服务器（阿里云称之为“ECS”，请注意<strong>不要误选择“轻量应用服务器”</strong>），可以选择预装CentOS 7或者是Ubuntu操作系统，购买之后可以通过SSH远程连接到服务器。因为已经在桌面设备上用过Ubuntu了，为了体验不一样的感觉，这里我选择了CentOS 7。</p>
+<p>PS. 下一个CentOS版本，CentOS 8已于2019年底发布，阿里云（腾讯云）不日将提供更新的操作系统以供选择吧。</p>
+<h3 id="连接到云服务器"><a href="#连接到云服务器" class="headerlink" title="连接到云服务器"></a>连接到云服务器</h3><p>购买之后在控制面板上查看服务器的公网IP，将这个IP记录下来，随后可以通过Windows上的SSH客户端工具连接到服务器。SSH客户端工具是Windows 10自带的一项系统功能。打开PowerShell或CMD，输入<code>ssh</code>并回车就能看到SSH所有可以使用的选项。</p>
+<p>如果电脑中提示找不到<code>SSH</code>命令，可以在“添加或删除系统功能”对话框中选中“OpenSSH工具”，让Win10自动安装这个工具。</p>
+<p>除了Windows 10自带的SSH外，Putty也是非常流行的工具。Putty提供了友好的图形界面，并且还能发送自带SSH工具所没有的鼠标消息。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh root@ip-of-your-server <span class="comment"># 通过这行指令连接到服务器。</span></span><br><span class="line"><span class="comment"># 输入正确的密码就可以登录服务器了。</span></span><br><span class="line"><span class="comment"># 输入密码时，窗口不会回显输入的字符。</span></span><br></pre></td></tr></table></figure>
+
+<p>SSH服务器会在客户端进入沉默状态（例如，没有任何键盘输入）后的一段时间内主动断开连接。要想SSH保持连接，可以使用<code>-o ServerAliveInterval=60</code>参数，让SSH工具每隔60秒就发送keep-alive消息到服务器，以保持连接。</p>
+<p>经过上面的步骤应该就能连接到自己的服务器了。</p>
+<p>PS. 阿里云（腾讯云）都有保卫服务器网络安全的“安全组”规则，安全组会默认放行SSH连接所需的22端口。而如果修改了SSH连接的端口，或者因为建立网站需要用到80端口等等，都需要在控制面板的安全组设置中开放相应的端口号，否则会出现无法连接的情况。</p>
+<p>PS2. 在我的笔记本中有<a href="https://lightyears1998.github.io/notebook/toolchain/operating-system/linux/linux-managment/">Linux常用指令笔记</a>和<a href="https://lightyears1998.github.io/notebook/toolchain/operating-system/linux/distributions/CentOS7/">CentOS笔记</a>。</p>
+<p>PS3. <a href="https://linux.vbird.org/" target="_blank" rel="noopener">鳥哥的Linux私房菜網站</a>是内容很全面的参考站点。（虽然我曾经听身边的一些资深玩家吐槽过同名的实体书，槽点是内容过于陈旧。私以为，作为入门材料，这个网站依然具有很大的参考价值，并且鸟哥也在不断更新网站的内容。其实，孤陋寡闻的我是从鸟哥的网站上得知CentOS 8的消息的……）</p>
+<p>PS4. 如果你觉得PowerShell或CMD的字体太丑，可以在Windows应用商店中搜索并下载Windows Terminal。这个软件提供美观的界面，并且具有标签页功能，可以在一个窗口中创建多个连接。</p>
+<h3 id="配置全新的服务器"><a href="#配置全新的服务器" class="headerlink" title="配置全新的服务器"></a>配置全新的服务器</h3><p>登录自己的服务器之后就可以使用<code>uname -r</code>确认系统的内核版本了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ uname -r</span><br><span class="line">3.10.0-957.27.2.el7.x86_64 <span class="comment"># 这里显示的是内核的版本。</span></span><br><span class="line"></span><br><span class="line">$ cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.7.1908 (Core) <span class="comment"># 这里显示的是CentOS的版本。</span></span><br></pre></td></tr></table></figure>
+
+<p>你是不是想知道<code>uname</code>指令为什么要使用<code>-r</code>参数呢？</p>
+<p>在Linux系统中获取关于某个指令的帮助信息有几种方式，其一是在指令的后面附加<code>--help</code>参数，其二是使用<code>man</code>指令查询某个指令的Manual Page。例如，要获得<code>uname</code>指令的man page，可以使用<code>man uname</code>；要获得<code>man</code>指令本身的man page，可以使用<code>man man</code>指令。（并不是所有指令都有<code>--help</code>帮助信息或man page。）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">some-command --<span class="built_in">help</span>  <span class="comment"># 显示某命令的帮助，比Manual Page简短。</span></span><br><span class="line">man some-command     <span class="comment"># 显示某命令的Manual Page。</span></span><br><span class="line">info some-command    <span class="comment"># 类似于Manual Page。</span></span><br></pre></td></tr></table></figure>
+
+<p>用最高权限的root账户进行所有的日常操作不是很靠谱，因此接下来要使用<code>useradd</code>创建日常使用的账户。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useradd lightyears -G wheel</span><br><span class="line"><span class="comment"># 以上命令创建名为lightyear的用户，并将它添加到wheel用户组。</span></span><br><span class="line"><span class="comment"># wheel用户组是CentOS上一个特殊的用户组，在这个用户组中的用户具有sudo权限。</span></span><br><span class="line"><span class="comment"># 所谓“具有sudo权限”，就是使用`sudo`指令执行一般用户不能执行的特权操作。</span></span><br><span class="line"><span class="comment"># 在随后步骤中要进行的“安装系统软件”操作就是特权操作之一。</span></span><br></pre></td></tr></table></figure>
+
+<p>随后就可以断开root的SSH连接了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> <span class="comment"># 断开连线前，查看本次连接中都执行了哪些指令。</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来使用新的用户名和密码连接到服务器。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh lightyears@server-ip</span><br></pre></td></tr></table></figure>
+
+<p>PS. 或许你已经注意到，在使用新的用户连接到服务器之后，“~”后的符号由“#”改变为了“$”。“$”是一般用户的标志。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hostname ~]<span class="comment">#</span></span><br><span class="line">[lightyears@hostname ~]$</span><br></pre></td></tr></table></figure>
+
+<p>PS2. 使用pwd指令可以显示当前目录；顺带一提，root用户的主目录默认为“<code>/root/</code>”。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/home/lightyears</span><br></pre></td></tr></table></figure>
+
+<p>常用的文件操作有<code>pwd</code>、<code>cat</code>、<code>echo</code>、<code>ls</code>、<code>touch</code>、<code>chmod</code>、<code>rm</code>、<code>mv</code>、<code>cd</code>、<code>mkdir</code>等。</p>
+<h3 id="安装gcc"><a href="#安装gcc" class="headerlink" title="安装gcc"></a>安装<code>gcc</code></h3><p>通过SSH连接到服务器后，就可以使用<code>yum</code>来安装<code>gcc</code>了。Linux系统与Windows系统差异之一是Linux系统主要是通过“包管理器”来安装软件。<code>yum</code>是CentOS 7就是使用的包管理器。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum update   <span class="comment"># 从网络上下载软件数据，这是一个特权指令，因此需要结合sudo使用。</span></span><br><span class="line">$ yum search gcc    <span class="comment"># 以gcc为关键字进行搜索</span></span><br><span class="line"><span class="comment"># 这时可能会返回大量结果，实际上我们只需要名称“最短”的那个gcc。</span></span><br><span class="line"></span><br><span class="line">$ yum info gcc           <span class="comment"># 搜索并显示GCC包的信息</span></span><br><span class="line">$ sudo yum install gcc   <span class="comment"># 安装GCC</span></span><br><span class="line"></span><br><span class="line">$ gcc --version     <span class="comment"># 显示gcc的版本号</span></span><br><span class="line">gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-39)</span><br></pre></td></tr></table></figure>
+
+<p>这样，GCC就安装好了，接下来可以尝试用<code>gcc</code>进行一次编译。但在编译之前要输入源代码。</p>
+<p><code>nano</code>和<code>vi</code>都是Linux上好用的文本编辑器。（<code>nano</code>可以通过<code>yum</code>安装。）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~</span><br><span class="line">$ mkdir -p esit-workspace/task0</span><br><span class="line">$ <span class="built_in">cd</span> esit-workspace/task0</span><br><span class="line"></span><br><span class="line">$ nano hello-world.c</span><br><span class="line"><span class="comment"># 在弹出的Nano窗口中编写一个Hello, world程序。</span></span><br><span class="line"></span><br><span class="line">$ cat hello-world.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s"</span>, <span class="string">"Hello, world!\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$ gcc hello-world.c -o hello-world</span><br><span class="line"><span class="comment"># 如果你不清楚上述命令是在干什么，可以查阅Manual Page。</span></span><br><span class="line"><span class="comment"># 若要在`man`搜索字符串，可以按下“/”键然后输入要搜索的字符串并回车。</span></span><br><span class="line"><span class="comment"># 按下“N”或“Shfit + N”可以在跳到下一个或前一个搜索结果。</span></span><br><span class="line"></span><br><span class="line">$ ./hello-world</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
+
+<h3 id="启用Software-Collections仓库并更新gcc版本"><a href="#启用Software-Collections仓库并更新gcc版本" class="headerlink" title="启用Software Collections仓库并更新gcc版本"></a>启用Software Collections仓库并更新gcc版本</h3><p>通过<code>yum info gcc</code>可以看到系统中安装的GCC版本，目前CentOS7的base仓库中的GCC版本为4.8，而GCC 9已经推出。</p>
+<p>可以通过Software Collections软件仓库下载比base仓库更新的软件。</p>
+<p>这里提到的软件仓库对应的英语是repository，从仓库里可以下载其他维护者已经编译好的软件，省去了自行编译软件的麻烦。Software Collections（SCL，又译作“软件选集”）仓库是被<a href="https://wiki.centos.org/zh/AdditionalResources/Repositories" target="_blank" rel="noopener">CentOS官方所推荐的附加软件库</a>之一，目前由一群软件爱好者维护，可以根据SCL官网上的<a href="https://www.softwarecollections.org/en/docs/" target="_blank" rel="noopener">文档</a>安装这个软件仓库。安装好这个软件仓库后就可以从这个仓库下载软件了。</p>
+<p>值得注意的是，GCC在SCL中被包含在devtoolset中，以“GCC”为名进行<a href="https://www.softwarecollections.org/en/scls/?search=devtoolset" target="_blank" rel="noopener">搜索</a>是查找不到的。</p>
+<p>下面的命令演示启用SCL仓库并安装GCC 8的过程。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br><span class="line">sudo yum install centos-release-scl</span><br><span class="line">sudo yum install devtoolset-8</span><br><span class="line"></span><br><span class="line">scl <span class="built_in">enable</span> devtoolset-8 bash</span><br><span class="line">gcc --verison</span><br><span class="line"><span class="built_in">which</span> gcc</span><br><span class="line">whereis gcc</span><br></pre></td></tr></table></figure>
+
+<p>上面的<code>scl enable</code>命令会为你新建一个Bash（Shell的一种），并在这个Bash中使用新版的gcc。当你使用<code>exit</code>命令退出这个Bash之后，系统就会使用原本的GCC。</p>
+<p>每次要使用新版的gcc时，都需要使用<code>scl enable devtoolset-8 bash</code>命令来启用GCC。如果想让Shell默认使用新版本的GCC怎么办？你可以在<code>/etc/profile.d</code>新建一个<code>enable-software-collections.sh</code>文件，并放入以下内容：</p>
+<p>（<strong>提示</strong>：修改<code>/etc/profile.d</code>时务必要谨慎。）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> scl_source <span class="built_in">enable</span> devtoolset-8</span><br></pre></td></tr></table></figure>
+
+<p><code>/etc/profile.d</code>目录下的脚本会在Shell启动时执行。这样，每个新启动的Shell都会自动执行这样命令，并使用新版的GCC。</p>
+<p>PS. 如果你想尝试默认的<code>bash</code>之外的其他Shell，不妨试试<code>zsh</code>和<code>fish</code>。</p>
+<h2 id="在Windows上使用VirtualBox"><a href="#在Windows上使用VirtualBox" class="headerlink" title="在Windows上使用VirtualBox"></a>在Windows上使用VirtualBox</h2><p>在Windows平台上，VMWare和<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">VirutalBox</a>都是好用的虚拟机软件。VMWare我只用过第12版，作为一款出色的商业软件，它的性能比同时期的VirtualBox要好很多。但我更倾向于使用开放和免费的VirtualBox。</p>
+<p>如果你在Windows平台上启用了Hyper V虚拟化，或许你有VirtualBox不能与Hyper V共存的印象。好消息是，最近发布的6.0版本的VirtualBox已经支持与Hyper V共存；只是当Hyper V启用时，VirtualBox不能嵌套VT-x/AMD-V，这样一来，在虚拟机中运行虚拟机将变得很慢。</p>
+<p>但话说回来，我的“4核2.1GHz AMD FX-7500CPU + 8GB800MHZ内存”的联想小新V1070，运行Hyper V时卡在了Windows的启动界面上的动画都卡，Hyper V虚拟化接口比AMD-V引擎慢至少一百倍。即使Hyper V能与VirtualBox共存，平时我也不会启动它。它，实在是，太慢了。</p>
+<p><del>得知AMD的CPU没有Android Emulator加速的时候，我明白FX-7500已经被这个时代抛弃了。</del></p>
+<h2 id="在Windows上使用Linux子系统"><a href="#在Windows上使用Linux子系统" class="headerlink" title="在Windows上使用Linux子系统"></a>在Windows上使用Linux子系统</h2><p>Windows Subsystem for Linux（WSL）组件可以在Windows平台上直接运行Ubuntu等著名的发行版。启用步骤简单，卸载也方便，常见的Linux程序多能在这个平台上运行，值得一试。</p>
+<p>但截止到目前，这个子系统还没有实现SysV消息队列及一些其他原生Linux所具备的功能，因此一些GNU C的程序在这个平台上是跑不起来的。</p>
+<h2 id="在Windows上使用MSYS2"><a href="#在Windows上使用MSYS2" class="headerlink" title="在Windows上使用MSYS2"></a>在Windows上使用MSYS2</h2><p><a href="https://www.msys2.org/" target="_blank" rel="noopener">MSYS2</a>继承MSYS项目，基于Cygwin和MinGW-w64，还可以追溯到原初的mingw项目。它使用Windows NT的API将整套POSIX的接口翻译了过来，因此可以在Windows上使用<code>gcc</code>编译出原生Windows程序。其实Git for Windows也有用到基于MSYS2的工作。</p>
+<p>使用<a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a>可以很方便地安装MSYS2。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install msys2</span><br></pre></td></tr></table></figure>
+
+<p>在MSYS2的Shell窗口中搜索和安装gcc的过程如下。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syu gcc</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+</ul>
+
+
+
+            <footer>
+    <div>© 2022 - lightyears1998 </div>
+    <div>
+        <span>
+            Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a href="https://github.com/nameoverflow/hexo-theme-icalm" target="_blank" rel="noopener">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+            <script>
+                if (hinst) {
+                    Han(document.querySelector('.data-pager-shell')).render();
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+<script src="/gzhu-esit-course-record/js/pager/dist/singlepager.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js"></script>
+
+<script>
+    var sp = new Pager('data-pager-shell');
+    var hinst = Han.init();
+</script>
+</body>
+</html>

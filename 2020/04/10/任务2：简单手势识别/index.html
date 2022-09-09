@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="han-init">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任务2：简单手势识别 | 广州大学ESiT课程记录</title>
+  
+    <link rel="icon" href="/gzhu-esit-course-record/assets/favicon.png">
+  
+  
+  
+  
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/gzhu-esit-course-record/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(/gzhu-esit-course-record/assets/header.png)">
+        <div class='av-pic' style="background-image: url(/gzhu-esit-course-record/assets/avatar.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>广州大学ESiT课程记录</div>
+        
+            <div>Embedded System and Interface Technology</div>
+        
+        <ul>
+          
+            <a href="/gzhu-esit-course-record/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/gzhu-esit-course-record/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/lightyears1998/gzhu-esit-course-record" target="_blank" rel="noopener">
+                    <img src="/gzhu-esit-course-record/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>任务2：简单手势识别</h1>
+    </header>
+
+    <section>
+      <p>金老师给我们本周的任务是做一个手势识别？！</p>
+<p>好吧，我真的对此感到疑惑。到底什么程度才算是“手势识别”？</p>
+<p>在这个项目上花费了将近两周。<br>遇到瓶颈时，我便开始怀疑自己是否在这个无底的项目上挥霍了并不充裕的时间。<br>直到项目完成的前一刻，我仍禁不住思考这个项目的究竟有何意义。<br>不过，好在最终成品里没有一行多余的代码。</p>
+<img src="/gzhu-esit-course-record/images/task2/screenshot.jpg" style="max-width: 270px;" alt="运行屏幕截图">
+
+<p>源码可见于<a href="https://gitee.com/lightyears/MotionDetection" target="_blank" rel="noopener">Gitee</a>。</p>
+<p>虽然金老师的原话要求使用“Accelerometer和Gyroscope”，我的项目上只用了Accelerometer；<br>我觉得我的思路不需要也无法使用到Gyroscope，即使有，也该是用RotationVectorSensor。</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div class='ArticleReleaseDate'>
+            发布于&nbsp;
+            <time datetime="2020-04-10T14:00:00.000Z" itemprop="datePublished">
+              2020-04-10
+            </time>
+          </div>
+          
+            <div class="ArticleMetaSeparator">/</div>
+            <div class="ArticleTags">
+              tags: 
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/android/">android</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/ndk/">ndk</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/sensor/">sensor</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/motion-detect/">motion-detect</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/gesture/">gesture</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+      <section>
+        <div id="disqus_thread"></div>
+        <script>
+          window.disqus_config = function () {
+            this.page.url = window.location.toString()
+            this.page.identifier = window.location.pathname
+          }
+          if (typeof DISQUS === 'undefined') {
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://lightyears1998-gzhu-esit-course-record.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          } else {
+            DISQUS.reset({
+              reload: true,
+              config: window.disqus_config
+            })
+          }
+        </script>
+      </section>
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - lightyears1998 </div>
+    <div>
+        <span>
+            Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a href="https://github.com/nameoverflow/hexo-theme-icalm" target="_blank" rel="noopener">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+            <script>
+                if (hinst) {
+                    Han(document.querySelector('.data-pager-shell')).render();
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+<script src="/gzhu-esit-course-record/js/pager/dist/singlepager.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js"></script>
+
+<script>
+    var sp = new Pager('data-pager-shell');
+    var hinst = Han.init();
+</script>
+</body>
+</html>

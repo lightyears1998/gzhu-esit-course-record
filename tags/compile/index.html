@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="han-init">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>广州大学ESiT课程记录</title>
+  
+    <link rel="icon" href="/gzhu-esit-course-record/assets/favicon.png">
+  
+  
+  
+  
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/gzhu-esit-course-record/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(/gzhu-esit-course-record/assets/header.png)">
+        <div class='av-pic' style="background-image: url(/gzhu-esit-course-record/assets/avatar.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>广州大学ESiT课程记录</div>
+        
+            <div>Embedded System and Interface Technology</div>
+        
+        <ul>
+          
+            <a href="/gzhu-esit-course-record/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/gzhu-esit-course-record/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/lightyears1998/gzhu-esit-course-record" target="_blank" rel="noopener">
+                    <img src="/gzhu-esit-course-record/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <ul class="Index">
+  
+    <header class='PageTitle'>
+        <h1>{ compile }</h1>
+    </header>
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/gzhu-esit-course-record/2020/03/28/%E4%BB%BB%E5%8A%A11-1%EF%BC%9A%E7%BC%96%E8%AF%91SensorGraph/">任务1.1：编译SensorGraph</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-03-28T11:30:00.000Z" itemprop="datePublished">
+    2020-03-28
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/compile/">compile</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/android/">android</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/ndk/">ndk</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/example/">example</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>金老师给我们本周的任务编译Android NDK示例中的<a href="https://github.com/android/ndk-samples/tree/master/sensor-graph" target="_blank" rel="noopener">SensorGraph</a>。如果已经做过任务1的话，这个任务应该会很简单。</p>
+<p>从Github上<code>clone</code>源代码，将SensorGraph项目导入Android Studio，Gradle Sync &amp; Build即可。</p>
+<img src="/gzhu-esit-course-record/images/task1-1/screenshot.jpg" style="max-width: 270px;" alt="运行屏幕截图">
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/gzhu-esit-course-record/2020/03/20/%E4%BB%BB%E5%8A%A11%EF%BC%9AAndroid%E4%B8%8E%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/">任务1：Android与交叉编译</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-03-20T05:24:52.000Z" itemprop="datePublished">
+    2020-03-20
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/compile/">compile</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/android/">android</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/ndk/">ndk</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>金老师这周给我们布置的任务是：“交叉编译一个共享库（Shared Object），在安卓手机中加载它，显示一个Hello, world。”</p>
+<p>要实现这一个目标有很多种途径，最简单的应该算是使用Android Studio中集成好的NDK。Android开发基本上离不开Android Studio。</p>
+<p>NDK是额外组件，需要通过Android Studio中的SDK Manager进行安装。安装时还可以勾选构建工具CMake和调试用的LLDB。</p>
+<p>安装完所有需要的组件后就万事俱备了。凭空将C++引入Android开发，最简单的方法就是从Native C++模板新建Android项目。</p>
+<p>不过，从Native C++模板新建的项目有可能会默认选择其他NDK版本而拒绝使用当前的安装的NDK。这时，在模块的<code>build.gradle</code>配置文件中将NDK的版本指定为当前安装的版本即可。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">plugin:</span> <span class="string">'com.android.application'</span></span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">28</span></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在这里指定NDK版本。</span></span><br><span class="line">    ndkVersion <span class="string">"21.0.6113669"</span></span><br><span class="line"></span><br><span class="line">    externalNativeBuild &#123;</span><br><span class="line">        cmake &#123;</span><br><span class="line">            path <span class="string">"src/main/cpp/CMakeLists.txt"</span></span><br><span class="line">            version <span class="string">"3.10.2"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模板已经将Gradle所需的全部依赖完整配置好了，并自动在MainActivity中引用了一个<code>native String stringFromJNI()</code>方法。直接修改这个方法的实现就算是完成任务了。</p>
+<p>这里也可以再多做一层封装：</p>
+<p>在Project视图下的<code>app/cpp</code>里新建先定义C++头文件<code>hello.h</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> HI_NDK_HELLO_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HI_NDK_HELLO_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用英语和中文说“世界你好。”</span></span><br><span class="line"><span class="comment"> * @return "Hello, world! 世界你好！"</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">sayHi</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//HI_NDK_HELLO_H</span></span></span><br></pre></td></tr></table></figure>
+
+<p>编写对应的C++实现文件<code>hello.cpp</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"hello.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;android/log.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用英语和中文说世界你好，以期检验JNI中的编码问题。</span></span><br><span class="line"><span class="comment"> * @return "Hello, world! 世界你好！"</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">sayHi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> greeting = <span class="built_in">string</span>(<span class="string">"Hello, world! 世界你好！"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在Logcat中可以看到输出。</span></span><br><span class="line">    __android_log_write(android_LogPriority::ANDROID_LOG_INFO, <span class="string">"Hi"</span>, greeting.c_str());</span><br><span class="line">    <span class="keyword">return</span> greeting;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>并将上述<code>.cpp</code>文件加入<code>CMakeLists.txt</code>的<code>add_library</code>处理器中，跟模板生成的<code>native-lib.cpp</code>放在一起。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMakeLists.txt</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">add_library( <span class="comment"># Sets the name of the library.</span></span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Sets the library as a shared library.</span></span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Provides a relative path to your source file(s).</span></span><br><span class="line">             native-lib.cpp hello.cpp )</span><br></pre></td></tr></table></figure>
+
+<p>最后在<code>native-lib.cpp</code>中调用新建的方法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"hello.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span></span><br><span class="line">JNIEXPORT jstring JNICALL</span><br><span class="line">Java_net_qfstudio_hindk_MainActivity_getGreeting(JNIEnv *env, jobject thiz) &#123;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;NewStringUTF(sayHi().c_str());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行Gradle Build并连接手机或模拟器运行，即可在Logcat和MainActivity屏幕中看到预期的输出。</p>
+<img src="/gzhu-esit-course-record/images/task1/screenshot.jpg" style="max-width: 270px;" alt="运行屏幕截图">
+
+<p>完整代码可见于<a href="https://gitee.com/lightyears/HiNDK/tree/master" target="_blank" rel="noopener">Gitee</a>。</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/gzhu-esit-course-record/2020/03/12/%E4%BB%BB%E5%8A%A10-1%EF%BC%9A%E7%BC%96%E8%AF%91GCC/">任务0.1：编译GCC</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-03-12T12:16:20.000Z" itemprop="datePublished">
+    2020-03-12
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/env/">env</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/gcc/">gcc</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/gzhu-esit-course-record/tags/compile/">compile</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>金老师给我们的附加任务是从源代码编译一套GCC。</p>
+<p>在<a href="https://gcc.gnu.org/install/index.html" target="_blank" rel="noopener">GNU网站</a>上有完整的关于如何从源代码编译GCC的指导。GNU网站上将编译和安装GCC的过程划分为6个步骤，我们只需要完成前4个步骤（即到Build这一步）就算是完成任务了。</p>
+<p>我打算在云主机中编译GCC。总的来说，这不算是一件难事。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在编译前确认系统信息。</span></span><br><span class="line">$ uname -r</span><br><span class="line">3.10.0-1062.12.1.el7.x86_64</span><br><span class="line"></span><br><span class="line">$ gcc --version</span><br><span class="line">gcc (GCC) 8.3.1 20190311 (Red Hat 8.3.1-3)</span><br><span class="line"></span><br><span class="line">$ cat /proc/cpuinfo</span><br><span class="line">model name      : Intel(R) Xeon(R) CPU E5-2682 v4 @ 2.50GHz</span><br><span class="line">cpu cores       : 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="取得GCC的源代码"><a href="#取得GCC的源代码" class="headerlink" title="取得GCC的源代码"></a>取得GCC的源代码</h2><p>这一部分对应指南中的<a href="https://gcc.gnu.org/install/download.html" target="_blank" rel="noopener">第2步</a>。</p>
+<p>我跳过了指南中的<a href="https://gcc.gnu.org/install/prerequisites.html" target="_blank" rel="noopener">第1步</a>，因为第1步描述的是编译GCC所需要安装的软件。这些软件如果缺失的话，可以在“配置”这一步骤中检测出来。</p>
+<p>GCC的源代码可以从GNU的<a href="https://gcc.gnu.org/git.html" target="_blank" rel="noopener">官方Git仓库</a>中克隆下来，或者从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="noopener">镜像网站</a>下载。这里我选择的是速度较快的日本镜像站<a href="http://ftp.tsukuba.wide.ad.jp/software/gcc/" target="_blank" rel="noopener">ftp.tsukuba.wide.ad.jp</a>，下载的版本是9.2.0。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir -p esit-workspace/task0.1</span><br><span class="line"><span class="built_in">cd</span> esit-workspace/task0.1</span><br><span class="line"></span><br><span class="line">wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-9.2.0/gcc-9.2.0.tar.gz</span><br><span class="line"><span class="comment"># 下载时如果速度太慢或失败，可以现在网络条件好的地方下载好，然后使用`scp`上传至服务器。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从压缩包中解压源代码。</span></span><br><span class="line">tar -xf gcc-9.2.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>这样，GCC的源代码就准备好了。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>这一部分对应指南中的<a href="https://gcc.gnu.org/install/configure.html" target="_blank" rel="noopener">第3步</a>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/home/lightyears/esit-workspace/task0.1</span><br><span class="line">$ ls</span><br><span class="line">gcc-9.2.0 gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据指南的要求，新建一个目录用来装编译产物。</span></span><br><span class="line">$ mkdir gcc-9.2.0-build</span><br><span class="line">gcc-9.2.0  gcc-9.2.0-build  gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行配置脚本。</span></span><br><span class="line">$ <span class="built_in">cd</span> gcc-9.2.0-build</span><br><span class="line">$ ../gcc-9.2.0/configure</span><br><span class="line">configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.</span><br><span class="line">Try the --with-gmp, --with-mpfr and/or --with-mpc options to specify</span><br><span class="line">their locations.  Source code <span class="keyword">for</span> these libraries can be found at</span><br><span class="line">their respective hosting sites as well as at</span><br><span class="line">ftp://gcc.gnu.org/pub/gcc/infrastructure/.  See also</span><br><span class="line">http://gcc.gnu.org/install/prerequisites.html <span class="keyword">for</span> additional info.  If</span><br><span class="line">you obtained GMP, MPFR and/or MPC from a vendor distribution package,</span><br><span class="line">make sure that you have installed both the libraries and the header</span><br><span class="line">files.  They may be located <span class="keyword">in</span> separate packages.</span><br></pre></td></tr></table></figure>
+
+<p><code>configure</code>在运行的过程中报错，看上去应该是必须的一些软件没有安装。依次执行<code>yum search/info GMP</code>、<code>yum search/info MPFR</code>和<code>yum search MPC</code>、<code>yum info libmpc</code>，发现应该是MPC包没有安装，<code>sudo yum install libmpc</code>将需要的包装好，再次执行配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ../gcc-9.2.0/configure</span><br><span class="line">configure: error: I suspect your system does not have 32-bit development libraries (libc and headers). If you have them, rerun configure with --<span class="built_in">enable</span>-multilib. If you <span class="keyword">do</span> not have them, and want to build a 64-bit-only compiler, rerun configure with --<span class="built_in">disable</span>-multilib.</span><br></pre></td></tr></table></figure>
+
+<p>由于不需要进行编译32位的程序，因此可以使用<code>--disable-multilib</code>重新配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ../gcc-9.2.0/configure</span><br><span class="line"><span class="comment"># 程序运行后退出，MakeFile已经生成好了。</span></span><br></pre></td></tr></table></figure>
+
+<p>到这里，这一步骤就顺利结束了。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>这一部分对应指南中的<a href="https://gcc.gnu.org/install/build.html" target="_blank" rel="noopener">第4步</a>。</p>
+<p>由于编译过程会持续很久，这时可以使用<code>screen</code>这样的终端管理器。这样即使断开SSH连接，编译过程也继续运行。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">screen -S compile-gcc <span class="comment"># 新建一个窗口提供给编译gcc使用。</span></span><br><span class="line">make -j 2 <span class="comment"># 然后等待。</span></span><br><span class="line"><span class="comment"># 可随时断开SSH连接。</span></span><br></pre></td></tr></table></figure>
+
+<p>中途可以重新连接上主机看一下编译过程是否出现差错。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当重新通过SSH连接到主机时，使用screen恢复之前的会话。</span></span><br><span class="line">screen -r compile-gcc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 顺便一提，在Screen会话中时，按下`Ctrl + A, d`组合键可以从当前会话中分离。</span></span><br><span class="line"><span class="comment"># （在Screen会话中时，）按下`Ctrl + A, k`可以Kill掉当前会话。</span></span><br><span class="line"><span class="comment"># （在Screen会话中时，）按下`Ctrl + A, ?`可以显示所有可用的命令。</span></span><br></pre></td></tr></table></figure>
+
+<p>在我的主机上，编译过程持续了7个小时。</p>
+<p>编译完成后就可以准备安装了。本来还应该进行测试步骤，但因为测试耗费时间太长，跳过这一步吧。</p>
+<p>为避免覆盖系统的GCC，<code>make install</code>时指定一个目录进行安装。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ screen -r compile-gcc</span><br><span class="line">$ <span class="built_in">cd</span> ~/esit-workspace/task0.1/ &amp;&amp; ls</span><br><span class="line">gcc-9.2.0  gcc-9.2.0-build gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个目录，下一步`make install`的GCC就装在这个新建的目录里。</span></span><br><span class="line">$ mkdir gcc-9.2.0-target &amp;&amp; ls</span><br><span class="line">gcc-9.2.0  gcc-9.2.0-build  gcc-9.2.0-target  gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> gcc-9.2.0-build</span><br><span class="line">$ make DESTDIR=/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target install</span><br></pre></td></tr></table></figure>
+
+<p><code>make install</code>结束后用热乎着的编译器编译一个新的Hello, world看看。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ../gcc-9.2.0-target &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target</span><br><span class="line"></span><br><span class="line">$ ./usr/<span class="built_in">local</span>/bin/gcc --version</span><br><span class="line">gcc (GCC) 9.2.0</span><br><span class="line"></span><br><span class="line">$ nano hello-world.c  <span class="comment"># 写一个Hello, world。</span></span><br><span class="line"></span><br><span class="line">$ ./usr/<span class="built_in">local</span>/bin/gcc -v hello-world.c -o hello-world &gt; compile.log 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看一下编译日志。</span></span><br><span class="line">$ grep -z <span class="string">"/home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target/"</span> compile.log</span><br><span class="line"></span><br><span class="line">$ ./hello-world</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
+
+<p>好，大功告成。</p>
+<hr>
+<p>编译产生的中间产物很多，安装完成后就不需要这些文件了。若是磁盘空间紧俏，可以直接删除。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ du ~/esit-workspace/task0.1/* -sh</span><br><span class="line">804M    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0</span><br><span class="line">6.1G    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0-build</span><br><span class="line">1.5G    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0-target</span><br><span class="line">119M    /home/lightyears/esit-workspace/task0.1/gcc-9.2.0.tar.gz</span><br><span class="line"></span><br><span class="line">rm -rf ~/esit-workspace/task0.1/gcc-9.2.0-build</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+</ul>
+
+
+
+            <footer>
+    <div>© 2022 - lightyears1998 </div>
+    <div>
+        <span>
+            Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a href="https://github.com/nameoverflow/hexo-theme-icalm" target="_blank" rel="noopener">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+            <script>
+                if (hinst) {
+                    Han(document.querySelector('.data-pager-shell')).render();
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+<script src="/gzhu-esit-course-record/js/pager/dist/singlepager.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js"></script>
+
+<script>
+    var sp = new Pager('data-pager-shell');
+    var hinst = Han.init();
+</script>
+</body>
+</html>
